@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class UntisModelTest extends TestCase
 {
-    private const int CURRENT_LINE = 1095;
+    private const int CURRENT_LINE = 1006;
     private UntisSubstitutionModel $model;
 
     protected function setUp(): void
@@ -141,15 +141,15 @@ class UntisModelTest extends TestCase
 
         echo "\n";
         echo "DISPLAY ENTRY:\n";
-        echo "Neuer Lehrer: " . ($interpreter->getDisplayEntry()->hasChangedTeacher() ? 'ja' : 'nein') . " \n";
-        echo "Neue Klasse(n): " . ($interpreter->getDisplayEntry()->hasChangedClasses() ? 'ja' : 'nein') . " \n";
-        echo "Neues Fach: " . ($interpreter->getDisplayEntry()->hasChangedSubject() ? 'ja' : 'nein') . " \n";
-        echo "Neuer Raum: " . ($interpreter->getDisplayEntry()->hasChangedRoom() ? 'ja' : 'nein') . " \n";
-        echo "Hat Infotext: " . ($interpreter->getDisplayEntry()->hasMessage() ? 'ja' : 'nein') . " \n";
-        echo "Ist Ausfall: " . ($interpreter->getDisplayEntry()->isCancelled() ? 'ja' : 'nein') . " \n";
-        echo "Ist Vertretung: " . ($interpreter->getDisplayEntry()->isSubstituted() ? 'ja' : 'nein') . " \n";
-        echo "Ist nur umgezogen: " . ($interpreter->getDisplayEntry()->isMoved() ? 'ja' : 'nein') . " \n";
-        echo "geratener Typ: " . $interpreter->getDisplayEntry()->getGuessedType() . " \n";
+        echo "Neuer Lehrer: " . ($interpreter->getDisplayEntry()?->hasChangedTeacher() ? 'ja' : 'nein') . " \n";
+        echo "Neue Klasse(n): " . ($interpreter->getDisplayEntry()?->hasChangedClasses() ? 'ja' : 'nein') . " \n";
+        echo "Neues Fach: " . ($interpreter->getDisplayEntry()?->hasChangedSubject() ? 'ja' : 'nein') . " \n";
+        echo "Neuer Raum: " . ($interpreter->getDisplayEntry()?->hasChangedRoom() ? 'ja' : 'nein') . " \n";
+        echo "Hat Infotext: " . ($interpreter->getDisplayEntry()?->hasMessage() ? 'ja' : 'nein') . " \n";
+        echo "Ist Ausfall: " . ($interpreter->getDisplayEntry()?->isCancelled() ? 'ja' : 'nein') . " \n";
+        echo "Ist Vertretung: " . ($interpreter->getDisplayEntry()?->isSubstituted() ? 'ja' : 'nein') . " \n";
+        echo "Ist nur umgezogen: " . ($interpreter->getDisplayEntry()?->isMoved() ? 'ja' : 'nein') . " \n";
+        echo "geratener Typ: " . $interpreter->getDisplayEntry()?->getGuessedType() . " \n";
 
         echo "\n\n";
 

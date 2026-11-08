@@ -23,7 +23,7 @@ class UntisSubstitutionModelSplitter
     /**
      * @var array|null multiple data rows for internal time booking systems
      */
-    private ?array $substitutionRows = null;
+    private ?array $substitutionRows = [];
 
     /**
      * @var UntisSubstitutionDisplayEntry|null single data row for displaying on info screens
@@ -62,21 +62,29 @@ class UntisSubstitutionModelSplitter
     private function generateSubstitutionDisplayEntry(): void
     {
         $model = $this->model;
-        $this->displayEntry = new UntisSubstitutionDisplayEntry(
-            $model->getUntisId(),
-            $model->getDate(),
-            $model->getCourseHour(),
-            $model->getPlannedSubject(),
-            $model->getUpdatedSubject(),
-            $model->getClasses(),
-            $model->getUpdatedClasses(),
-            $model->getPlannedTeacher(),
-            $model->getUpdatedTeacher(),
-            $model->getPlannedRoom(),
-            $model->getUpdatedRoom(),
-            $model->getMessage(),
-            $model->getBits(),
-        );
+        if (
+            !empty($model->getPlannedSubject()) &&
+            !empty($model->getPlannedTeacher()) &&
+            !empty($model->getClasses()) &&
+            !empty($model->getPlannedRoom())
+        ) {
+            $this->displayEntry = new UntisSubstitutionDisplayEntry(
+                $model->getUntisId(),
+                $model->getDate(),
+                $model->getCourseHour(),
+                $model->getPlannedSubject(),
+                $model->getUpdatedSubject(),
+                $model->getClasses(),
+                $model->getUpdatedClasses(),
+                $model->getPlannedTeacher(),
+                $model->getUpdatedTeacher(),
+                $model->getPlannedRoom(),
+                $model->getUpdatedRoom(),
+                $model->getMessage(),
+                $model->getBits(),
+            );
+        }
+
     }
 
     private function generateSubstitutionRows(): void
@@ -106,8 +114,14 @@ class UntisSubstitutionModelSplitter
             $row->setType($model->getType());
             $row->setCount($model->getCounts());
             $row->setAmount($this->hasMinus ? -1 : 0);
-
-            $this->substitutionRows[] = $row;
+            if (
+                !empty($model->getPlannedSubject()) &&
+                !empty($model->getPlannedTeacher()) &&
+                !empty($model->getClasses()) &&
+                !empty($model->getPlannedRoom())
+            ) {
+                $this->substitutionRows[] = $row;
+            }
         }
         if ($isSubstituted) {
             $row = new UntisSubstitutionRow();
