@@ -46,7 +46,7 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
   <component name="PhpStan">
     <PhpStan_settings>
       <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="e0d50c37-ab25-4566-b143-cc48779384b5" timeout="60000" />
