@@ -81,13 +81,15 @@ class UntisSubstitutionModelSplitter
 
     private function generateSubstitutionRows(): void
     {
+
         $model = $this->model;
+        $isSubstituted = ($model->getUpdatedTeacher() and $model->getPlannedTeacher() !== $model->getUpdatedTeacher());
         if ($model->getPlannedTeacher()) {
             $row = new UntisSubstitutionRow();
 
             // Daten setzen
             $row->setUntisId(
-                ($model->getUpdatedTeacher() and $model->getPlannedTeacher() !== $model->getUpdatedTeacher())
+                ($isSubstituted)
                     ? $model->getUntisId() . "_orig"
                     : $model->getUntisId()
             );
@@ -98,7 +100,7 @@ class UntisSubstitutionModelSplitter
             $row->setTeacher($model->getPlannedTeacher());
             $row->setClasses($model->getClasses());
             $row->setRoom($model->getPlannedRoom());
-            $row->setReason($model->getAbsenceReason());
+            $row->setReason(!$isSubstituted ? $model->getAbsenceReason(): "Ausfall (vertr. d. {$model->getUpdatedTeacher()})");
             $row->setMessage($model->getMessage());
             $row->setBits($model->getBits());
             $row->setType($model->getType());
@@ -107,7 +109,7 @@ class UntisSubstitutionModelSplitter
 
             $this->substitutionRows[] = $row;
         }
-        if ($model->getUpdatedTeacher() and $model->getPlannedTeacher() !== $model->getUpdatedTeacher()) {
+        if ($isSubstituted) {
             $row = new UntisSubstitutionRow();
 
             // Daten setzen
@@ -119,7 +121,7 @@ class UntisSubstitutionModelSplitter
             $row->setTeacher($model->getUpdatedTeacher());
             $row->setClasses($model->getClasses());
             $row->setRoom($model->getUpdatedRoom() ?: $model->getPlannedRoom());
-            $row->setReason($model->getAbsenceReason());
+            $row->setReason($model->getAbsenceReason()?: "Vertretung für {$model->getPlannedTeacher()}");
             $row->setMessage($model->getMessage());
             $row->setBits($model->getBits());
             $row->setType($model->getType());

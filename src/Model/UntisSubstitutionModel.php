@@ -2,6 +2,7 @@
 
 namespace Btinet\Untis\Model;
 
+use Btinet\Untis\Enum\Substitution\UntisBit;
 use Btinet\Untis\Enum\Substitution\UntisField;
 use Btinet\Untis\Enum\Substitution\UntisType;
 use Btinet\Untis\Service\EncodingHelper;
@@ -180,6 +181,9 @@ class UntisSubstitutionModel
         return $this->message;
     }
 
+    /**
+     * @return UntisBit[]
+     */
     public function getBits(): array
     {
         return $this->bits;
