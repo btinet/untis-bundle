@@ -1,0 +1,30 @@
+{
+  "name": "btinet/untis-bundle",
+  "description": "Import GPU-Files from Untis.",
+  "type": "library",
+  "version": "1.0",
+  "require": {
+    "php": ">=8.4",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Btinet\\Untis\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Btinet\\Test\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit tests/",
+    "test-coverage": "phpunit --coverage-text"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

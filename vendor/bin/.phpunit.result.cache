@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"Service\\GradeCalculatorTest::testGradeCalculation":0.004,"AppTest\\Service\\GradeCalculatorTest::testGradeCalculation":0.003,"AppTest\\Service\\GradeCalculatorTest::testGrades":0.003}}
