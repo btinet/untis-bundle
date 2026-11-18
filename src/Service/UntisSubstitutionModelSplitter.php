@@ -117,7 +117,7 @@ class UntisSubstitutionModelSplitter
             if (
                 !empty($model->getPlannedSubject()) &&
                 !empty($model->getPlannedTeacher()) &&
-                // !empty($model->getClasses()) &&
+                !empty($model->getClasses()) &&
                 !empty($model->getPlannedRoom())
             ) {
                 $this->substitutionRows[] = $row;
@@ -141,8 +141,15 @@ class UntisSubstitutionModelSplitter
             $row->setType($model->getType());
             $row->setCount($model->getCounts());
             $row->setAmount($this->hasPlus ? 1 : 0);
-
-            $this->substitutionRows[] = $row;
+            $row->setComment($model->getStatistics());
+            if (
+                !empty($model->getPlannedSubject()) &&
+                !empty($model->getPlannedTeacher()) &&
+                !empty($model->getClasses()) &&
+                !empty($model->getPlannedRoom())
+            ) {
+                $this->substitutionRows[] = $row;
+            }
         }
     }
 
