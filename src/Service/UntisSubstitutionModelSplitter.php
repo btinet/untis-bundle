@@ -137,7 +137,8 @@ class UntisSubstitutionModelSplitter
             $row->setClasses($model->getClasses());
             $row->setRoom($model->getUpdatedRoom() ?: $model->getPlannedRoom());
             $reason = $model->getAbsenceReason() ? " ({$model->getAbsenceReason()})" : "";
-            $row->setReason("Vertr. f. {$model->getPlannedTeacher()}$reason");
+            $teacherName = strtoupper($model->getPlannedTeacher());
+            $row->setReason("Vertr. f. {$teacherName}$reason");
             $row->setMessage($model->getMessage());
             $row->setBits($model->getBits());
             $row->setType($model->getType());

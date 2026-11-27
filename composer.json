@@ -2,7 +2,7 @@
   "name": "btinet/untis-bundle",
   "description": "Import GPU-Files from Untis.",
   "type": "library",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "require": {
     "php": ">=8.3",
     "ext-mbstring": "*"
